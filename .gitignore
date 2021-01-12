@@ -1,0 +1,8 @@
+*.class
+
+# idea
+.idea/
+*.iml
+
+*velocity.log*
+
