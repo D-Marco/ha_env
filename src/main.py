@@ -4,7 +4,7 @@ import os
 import time
 from xml.dom.minidom import parse
 
-from MqttClient import MqttClient
+from src.MqttClient import MqttClient
 
 
 def start_mqtt(thread_name, mqtt):
@@ -12,6 +12,15 @@ def start_mqtt(thread_name, mqtt):
 
 
 if __name__ == '__main__':
+    variables = dict({})
+    value = '{"phone":"13276016830","userId":"846"}'
+    variables["value"] = value
+    try:
+        variables["value_json"] = json.loads(value)
+    except (ValueError, TypeError):
+        pass
+
+
     docEnv = os.popen('echo $docEnv')  # 需要替换
     docEnvStr = docEnv.read()
     docEnvJson = json.loads(docEnvStr)
@@ -34,4 +43,3 @@ if __name__ == '__main__':
         print("error thread start")
     while True:
         time.sleep(1)
-
