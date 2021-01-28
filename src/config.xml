@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-    <local_mqtt_url>172.17.0.1</local_mqtt_url>
+    <local_mqtt_url>192.168.1.100</local_mqtt_url>
     <local_mqtt_port>1883</local_mqtt_port>
     <remote_mqtt_url>52.130.92.191</remote_mqtt_url>
     <remote_mqtt_port>1883</remote_mqtt_port>

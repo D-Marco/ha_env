@@ -1,0 +1,19 @@
+{
+  "device": {
+    "identifiers": [
+      "zigbee2mqtt_058BCBF69F9D4E33"
+    ],
+    "manufacturer": "Xiaomi",
+    "model": "Aqara water leak sensor (SJCGQ11LM)",
+    "name": "058BCBF69F9D4E33",
+    "sw_version": "Zigbee2MQTT 1.17.0"
+  },
+  "device_class": "moisture",
+  "json_attributes_topic": "zigbee2mqtt/058BCBF69F9D4E33",
+  "name": "058BCBF69F9D4E33 water_leak",
+  "payload_off": false,
+  "payload_on": true,
+  "state_topic": "zigbee2mqtt/058BCBF69F9D4E33",
+  "unique_id": "058BCBF69F9D4E33_water_leak_zigbee2mqtt",
+  "value_template": "{ value_json.water_leak }"
+}
