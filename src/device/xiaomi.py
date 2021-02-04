@@ -4,7 +4,7 @@ import json
 def build_config_topic(device_type, serial, alias):
     """
     返回设备配置的主题
-    :param device_type:  设备类型，如sensor, binary_sensor
+    :param device_type:  设备类型，如sensor, binary_sensor,switch
     :param serial: 设备串号
     :param alias: 设备别名
     :return: 
@@ -40,6 +40,10 @@ def build_smoke_sensor_smoke_config_topic(serial):
     return build_config_topic("binary_sensor", serial, "smoke")
 
 
+def build_alarm_switch_config_topic(serial):
+    return build_config_topic("switch", serial, "alarm")
+
+
 def build_config_payload(serial, manufacturer_name, model_name, class_name, short_name, device_type, unit="", binary_reverse=False):
     """
 
@@ -48,7 +52,7 @@ def build_config_payload(serial, manufacturer_name, model_name, class_name, shor
     :param model_name: 设备模块名称
     :param class_name: 设备类名（前端用于分类设备图标和样式）
     :param short_name: 设备下的某个传感器或执行器的名称
-    :param device_type: 设备类型，0:binary_sensor; 1:sensor
+    :param device_type: 设备类型，0:binary_sensor; 1:sensor 2:switch
     :param unit: 传感器单位
     :param binary_reverse: 二进制传感器是否需要数值对调
     :return: json字符串
@@ -59,8 +63,6 @@ def build_config_payload(serial, manufacturer_name, model_name, class_name, shor
     payload["device_class"] = class_name
     payload["json_attributes_topic"] = "zigbee2mqtt/" + serial
     payload["name"] = "{serial} {short_name}".format(serial=serial, short_name=short_name)
-    if binary_reverse:
-        pass
     if device_type == 0:
         payload["payload_off"] = binary_reverse
         payload["payload_on"] = not binary_reverse
@@ -68,7 +70,8 @@ def build_config_payload(serial, manufacturer_name, model_name, class_name, shor
     payload["unique_id"] = "{serial}_{short_name}_zigbee2mqtt".format(serial=serial, short_name=short_name)
     if device_type == 1:
         payload["unit_of_measurement"] = unit
-    payload["value_template"] = "{{ value_json." + short_name + " }}"
+    if device_type == 0 or device_type == 1:
+        payload["value_template"] = "{{ value_json." + short_name + " }}"
     return json.dumps(payload)
 
 
@@ -135,6 +138,10 @@ def build_smoke_sensor_smoke_config_payload(serial):
     return build_config_payload(serial, "Xiaomi", "MiJia Honeywell smoke detector (JTYJ-GD-01LM/BW)", "smoke", "smoke", 0)
 
 
+def build_alarm_config_payload(serial):
+    return build_config_payload(serial, "Xiaomi", "MiJia Honeywell smoke detector (JTYJ-GD-01LM/BW)", "", "alarm", 2)
+
+
 def build_data_topic(serial):
     """
      构建数据发送主题
@@ -198,6 +205,10 @@ def parse_smoke_data(json_data):
     return json.dumps({"smoke": True if json_data["smoke"] == "1" else False})
 
 
+def parse_alarm_data(json_data):
+    return "ON" if json_data["status"] == "0" else "OFF"
+
+
 XIAOMI_DEVICE_BUILD_DIC = {
     "illumination_xiaomi": {"config": [{"topic_fun": build_ill_sensor_ill_config_topic, "payload_fun": build_ill_sensor_ill_config_payload}],
                             "data": {"topic_fun": build_data_topic, "payload_fun": parse_ill_data}},
@@ -217,4 +228,7 @@ XIAOMI_DEVICE_BUILD_DIC = {
 
     "smoke_xiaomi": {"config": [{"topic_fun": build_smoke_sensor_smoke_config_topic, "payload_fun": build_smoke_sensor_smoke_config_payload}],
                      "data": {"topic_fun": build_data_topic, "payload_fun": parse_smoke_data}},
+
+    "alarm_xiaomi": {"config": [{"topic_fun": build_alarm_switch_config_topic, "payload_fun": build_alarm_config_payload}],
+                     "data": {"topic_fun": build_data_topic, "payload_fun": parse_alarm_data}}
 }
