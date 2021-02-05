@@ -1,19 +1,17 @@
 {
   "device": {
     "identifiers": [
-      "zigbee2mqtt_058BCBF69F9D4E33"
+      "zigbee2mqtt_A5F15A097BFC46A1"
     ],
     "manufacturer": "Xiaomi",
-    "model": "Aqara water leak sensor (SJCGQ11LM)",
-    "name": "058BCBF69F9D4E33",
+    "model": "MiJia Honeywell smoke detector (JTYJ-GD-01LM/BW)",
+    "name": "A5F15A097BFC46A1",
     "sw_version": "Zigbee2MQTT 1.17.0"
   },
-  "device_class": "moisture",
-  "json_attributes_topic": "zigbee2mqtt/058BCBF69F9D4E33",
-  "name": "058BCBF69F9D4E33 water_leak",
-  "payload_off": false,
-  "payload_on": true,
-  "state_topic": "zigbee2mqtt/058BCBF69F9D4E33",
-  "unique_id": "058BCBF69F9D4E33_water_leak_zigbee2mqtt",
-  "value_template": "{ value_json.water_leak }"
+  "device_class": "",
+  "json_attributes_topic": "zigbee2mqtt/A5F15A097BFC46A1",
+  "name": "A5F15A097BFC46A1 alarm",
+  "state_topic": "zigbee2mqtt/A5F15A097BFC46A1",
+  "unique_id": "A5F15A097BFC46A1_alarm_zigbee2mqtt",
+  "command_topic": "zigbee2mqtt/A5F15A097BFC46A1/alarm"
 }

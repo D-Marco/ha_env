@@ -72,6 +72,8 @@ def build_config_payload(serial, manufacturer_name, model_name, class_name, shor
         payload["unit_of_measurement"] = unit
     if device_type == 0 or device_type == 1:
         payload["value_template"] = "{{ value_json." + short_name + " }}"
+    if device_type == 2:
+        payload["command_topic"] = "homeassistant/{serial}/{short_name}".format(serial=serial, short_name=short_name)
     return json.dumps(payload)
 
 
@@ -229,6 +231,6 @@ XIAOMI_DEVICE_BUILD_DIC = {
     "smoke_xiaomi": {"config": [{"topic_fun": build_smoke_sensor_smoke_config_topic, "payload_fun": build_smoke_sensor_smoke_config_payload}],
                      "data": {"topic_fun": build_data_topic, "payload_fun": parse_smoke_data}},
 
-    "alarm_xiaomi": {"config": [{"topic_fun": build_alarm_switch_config_topic, "payload_fun": build_alarm_config_payload}],
-                     "data": {"topic_fun": build_data_topic, "payload_fun": parse_alarm_data}}
+    "alarmLamp_xiaomi": {"config": [{"topic_fun": build_alarm_switch_config_topic, "payload_fun": build_alarm_config_payload}],
+                         "data": {"topic_fun": build_data_topic, "payload_fun": parse_alarm_data}}
 }
