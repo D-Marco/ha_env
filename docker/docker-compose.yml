@@ -12,7 +12,6 @@ services:
       - ha
     volumes:
       - ../src:/usr/local/src
-    restart: always
 
   ha:
     image: "homeassistant/home-assistant:0.114.4"
@@ -25,12 +24,9 @@ services:
       - "/dev/ttyS11:/dev/ttyS11"
     depends_on:
       - mosquitto
-    restart: always
-
 
   mosquitto:
     image: "eclipse-mosquitto"
     container_name: mosquitto
     ports:
       - "1883:1883"
-    restart: always
