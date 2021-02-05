@@ -39,7 +39,7 @@ class MqttClient:
         logger.debug(self.name + "receive topic:  " + msg.topic + ",    payload:" + str(msg.payload.decode("utf-8")))
 
     def send_msg(self, topic, payload):
-        logger.debug(self.name + "send topic:  " + topic + ",payload:=" + payload)
+        logger.debug(self.name + "send topic:  " + topic + ",payload: " + payload)
         self.mqtt_client.publish(topic=topic, payload=payload)
 
     def set_opposite_mqtt(self, mqtt_client):

@@ -60,20 +60,28 @@ def build_config_payload(serial, manufacturer_name, model_name, class_name, shor
     payload = {}
     device_obj = {"identifiers": ["zigbee2mqtt_" + serial], "manufacturer": manufacturer_name, "model": model_name, "name": serial, "sw_version": "Zigbee2MQTT 1.17.0"}
     payload["device"] = device_obj
-    payload["device_class"] = class_name
+    if device_type != 2:
+        payload["device_class"] = class_name
+
     payload["json_attributes_topic"] = "zigbee2mqtt/" + serial
     payload["name"] = "{serial} {short_name}".format(serial=serial, short_name=short_name)
+    payload["state_topic"] = "zigbee2mqtt/" + serial
+    payload["unique_id"] = "{serial}_{short_name}_zigbee2mqtt".format(serial=serial, short_name=short_name)
     if device_type == 0:
         payload["payload_off"] = binary_reverse
         payload["payload_on"] = not binary_reverse
-    payload["state_topic"] = "zigbee2mqtt/" + serial
-    payload["unique_id"] = "{serial}_{short_name}_zigbee2mqtt".format(serial=serial, short_name=short_name)
+        payload["value_template"] = "{{ value_json." + short_name + " }}"
+
     if device_type == 1:
         payload["unit_of_measurement"] = unit
-    if device_type == 0 or device_type == 1:
         payload["value_template"] = "{{ value_json." + short_name + " }}"
+
     if device_type == 2:
-        payload["command_topic"] = "homeassistant/{serial}/{short_name}".format(serial=serial, short_name=short_name)
+        payload["command_topic"] = "{serial}/down".format(serial=serial, short_name=short_name)
+        payload["payload_off"] = '{"status":"0"}'
+        payload["payload_on"] = '{"status":"1"}'
+        payload["state_off"] = "0"
+        payload["state_on"] = "1"
     return json.dumps(payload)
 
 
@@ -146,7 +154,7 @@ def build_alarm_config_payload(serial):
 
 def build_data_topic(serial):
     """
-     构建数据发送主题
+     构建传感器数据发送主题
     :param serial:
     :return:
     """
@@ -208,7 +216,7 @@ def parse_smoke_data(json_data):
 
 
 def parse_alarm_data(json_data):
-    return "ON" if json_data["status"] == "0" else "OFF"
+    return json_data["status"]
 
 
 XIAOMI_DEVICE_BUILD_DIC = {

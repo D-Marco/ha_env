@@ -33,8 +33,6 @@ class RemoteMqttClient(MqttClient):
             if device_type not in self.config_msg_times:
                 self.config_msg_times[device_type] = 0
             if self.config_msg_times[device_type] % 100 == 0:
-                if device_type=="alarmLamp_xiaomi":
-                    print("fff")
                 self.config_msg_times[device_type] += 1
                 for item in config_array:
                     config_topic_result = item["topic_fun"](serial)

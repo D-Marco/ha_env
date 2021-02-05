@@ -18,5 +18,5 @@ class LocalMqttClient(MqttClient):
         topic = msg.topic
         target = str(self.userId) + "/"
         to_remote_topic = target + topic
-        logger.debug("local  mqtt client  send topic:  " + to_remote_topic + ",    payload:" + payload)
+        logger.debug("local  mqtt client  send topic:  " + to_remote_topic + ", payload:" + payload)
         self.opposite_mqtt.send_msg(to_remote_topic, payload)
