@@ -1,10 +1,12 @@
 import _thread
 import json
 import os
+import sys
 import time
 
+cur_path = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(0, cur_path + "/..")
 from xml.dom.minidom import parse
-
 from src.mqtt_client.LocalMqttClient import LocalMqttClient
 from src.mqtt_client.RemoteMqttClient import RemoteMqttClient
 
