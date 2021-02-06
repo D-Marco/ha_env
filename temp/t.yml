@@ -1,0 +1,83 @@
+elements:
+  - entity: binary_sensor.9c904f15ef944a7b_smoke
+    style:
+      left: 33%
+      top: 8%
+    type: state-badge
+  - entity: sensor.44050826e0ea409d_illuminance_lux
+    style:
+      left: 46%
+      top: 8%
+    type: state-badge
+  - entity: sensor.6bf3b0f106b4470e_temperature
+    style:
+      left: 59%
+      top: 8%
+    type: state-badge
+  - entity: sensor.6bf3b0f106b4470e_humidity
+    style:
+      left: 72%
+      top: 8%
+    type: state-badge
+  - entity: switch.e7f00923effc4197_alarm
+    style:
+      left: 85%
+      top: 8%
+    type: state-badge
+  - entity: switch.e7f00923effc4197_alarm
+    style:
+      left: 45%
+      top: 21%
+    type: state-icon
+  - entity: binary_sensor.d322710789dc4bd9_occupancy
+    style:
+      left: 15%
+      top: 26%
+    type: state-icon
+  - entity: binary_sensor.27bbfba5ef104520_contact
+    style:
+      left: 28%
+      top: 61%
+    type: state-icon
+  - entity: sensor.6bf3b0f106b4470e_temperature
+    style:
+      left: 40%
+      top: 32%
+    type: state-icon
+  - entity: sensor.6bf3b0f106b4470e_humidity
+    style:
+      left: 50%
+      top: 32%
+    type: state-icon
+  - entity: sensor.44050826e0ea409d_illuminance_lux
+    style:
+      left: 60%
+      top: 32%
+    type: state-icon
+  - entity: binary_sensor.77be3faac98a4628_water_leak
+    style:
+      left: 80%
+      top: 28%
+    type: state-icon
+  - entity: binary_sensor.9c904f15ef944a7b_smoke
+    style:
+      left: 90%
+      top: 28%
+    type: state-icon
+  - entity: binary_sensor.d322710789dc4bd9_occupancy
+    style:
+      left: 66%
+      top: 91%
+    type: state-badge
+  - entity: binary_sensor.27bbfba5ef104520_contact
+    style:
+      left: 79%
+      top: 91%
+    type: state-badge
+  - entity: binary_sensor.77be3faac98a4628_water_leak
+    style:
+      left: 92%
+      top: 91%
+    type: state-badge
+image: 'https://demo.home-assistant.io/stub_config/floorplan.png'
+type: picture-elements
