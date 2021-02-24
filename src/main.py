@@ -16,19 +16,10 @@ def start_mqtt(mqtt):
 
 
 if __name__ == '__main__':
-    variables = dict({})
-    value = '{"phone":"13276016830","userId":"846"}'
-    variables["value"] = value
-    try:
-        variables["value_json"] = json.loads(value)
-    except (ValueError, TypeError):
-        pass
-
     docEnv = os.popen('echo $docEnv')  # 需要替换
     docEnvStr = docEnv.read()
     docEnvJson = json.loads(docEnvStr)
-    # userId = docEnvJson["userId"]
-    userId = 846
+    userId = docEnvJson["userId"]
     print(str(userId))
     domTree = parse("config.xml")
     rootNode = domTree.documentElement
