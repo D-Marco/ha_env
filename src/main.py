@@ -20,6 +20,7 @@ if __name__ == '__main__':
     docEnvStr = docEnv.read()
     docEnvJson = json.loads(docEnvStr)
     userId = docEnvJson["userId"]
+    # userId = 846
     print(str(userId))
     domTree = parse("config.xml")
     rootNode = domTree.documentElement

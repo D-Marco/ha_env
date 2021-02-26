@@ -149,7 +149,7 @@ def build_smoke_sensor_smoke_config_payload(serial):
 
 
 def build_alarm_config_payload(serial):
-    return build_config_payload(serial, "Xiaomi", "MiJia Honeywell smoke detector (JTYJ-GD-01LM/BW)", "", "alarm", 2)
+    return build_config_payload(serial, "Xiaomi", "MiJia simulate alarm", "", "alarm", 2)
 
 
 def build_data_topic(serial):

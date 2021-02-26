@@ -11,7 +11,7 @@ services:
       - mosquitto
       - ha
     volumes:
-      - ../src:/usr/local/src
+      - ../config/config.xml:/usr/local/src/config.xml
 
   ha:
     image: "homeassistant/home-assistant:0.114.4"
