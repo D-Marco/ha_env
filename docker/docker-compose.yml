@@ -1,11 +1,7 @@
 version: '3'
 services:
   m2m:
-    build:
-      context: ..
-      args:
-        - docEnv= ${docEnv}
-    image: m2m:1.0
+    image: dockerhub.nlecloud.com/1x_virtual_platform/m2m:1.0.0
     container_name: m2m
     depends_on:
       - mosquitto
@@ -14,7 +10,7 @@ services:
       - ../config/config.xml:/usr/local/src/config.xml
 
   ha:
-    image: "homeassistant/home-assistant:0.114.4"
+    image: "dockerhub.nlecloud.com/1x_virtual_platform/ha:0.114.4"
     container_name: ha
     ports:
       - "20805:8123"
@@ -26,7 +22,7 @@ services:
       - mosquitto
 
   mosquitto:
-    image: "eclipse-mosquitto"
+    image: "dockerhub.nlecloud.com/1x_virtual_platform/mosquitto:v1.0.0"
     container_name: mosquitto
     ports:
       - "20905:1883"

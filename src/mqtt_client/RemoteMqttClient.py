@@ -32,15 +32,17 @@ class RemoteMqttClient(MqttClient):
             config_array = XIAOMI_DEVICE_BUILD_DIC[device_type]["config"]
             if device_type not in self.config_msg_times:
                 self.config_msg_times[device_type] = 0
-            if self.config_msg_times[device_type] % 100 == 0:
-                self.config_msg_times[device_type] += 1
+            print(self.config_msg_times[device_type])
+            if self.config_msg_times[device_type] % 10 == 0:
                 for item in config_array:
+                    print(2)
                     config_topic_result = item["topic_fun"](serial)
                     config_payload_result = item["payload_fun"](serial)
                     self.opposite_mqtt.send_msg(config_topic_result, config_payload_result)
 
             data_topic_result = XIAOMI_DEVICE_BUILD_DIC[device_type]["data"]["topic_fun"](serial)
             data_payload_result = XIAOMI_DEVICE_BUILD_DIC[device_type]["data"]["payload_fun"](payload_json)
+            self.config_msg_times[device_type] += 1
             self.opposite_mqtt.send_msg(data_topic_result, data_payload_result)
         else:  # 普通mqtt报文
             target = str(self.userId) + "/"
