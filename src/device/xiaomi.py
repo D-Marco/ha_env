@@ -216,7 +216,7 @@ def parse_smoke_data(json_data):
 
 
 def parse_alarm_data(json_data):
-    return json_data["status"]
+    return "ON" if json_data["status"] == "1" else "OFF"
 
 
 XIAOMI_DEVICE_BUILD_DIC = {

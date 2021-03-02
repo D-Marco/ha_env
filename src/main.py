@@ -21,7 +21,6 @@ if __name__ == '__main__':
     docEnvJson = json.loads(docEnvStr)
     userId = docEnvJson["userId"]
     # userId = 846
-    print(str(userId))
     domTree = parse("config.xml")
     rootNode = domTree.documentElement
     local_mqtt_url = rootNode.getElementsByTagName("local_mqtt_url")[0].childNodes[0].data
