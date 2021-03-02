@@ -80,8 +80,8 @@ def build_config_payload(serial, manufacturer_name, model_name, class_name, shor
         payload["command_topic"] = "{serial}/down".format(serial=serial, short_name=short_name)
         payload["payload_off"] = '{"status":"0"}'
         payload["payload_on"] = '{"status":"1"}'
-        payload["state_off"] = "0"
-        payload["state_on"] = "1"
+        payload["state_off"] = "OFF"
+        payload["state_on"] = "ON"
     return json.dumps(payload)
 
 
