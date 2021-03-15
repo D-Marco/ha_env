@@ -20,14 +20,12 @@ if __name__ == '__main__':
     docEnvStr = docEnv.read()
     docEnvJson = json.loads(docEnvStr)
     userId = docEnvJson["userId"]
-    # userId = 846
-    print(str(userId))
     domTree = parse("config.xml")
     rootNode = domTree.documentElement
     local_mqtt_url = rootNode.getElementsByTagName("local_mqtt_url")[0].childNodes[0].data
     local_mqtt_port = rootNode.getElementsByTagName("local_mqtt_port")[0].childNodes[0].data
-    remote_mqtt_url = rootNode.getElementsByTagName("remote_mqtt_url")[0].childNodes[0].data
-    remote_mqtt_port = rootNode.getElementsByTagName("remote_mqtt_port")[0].childNodes[0].data
+    remote_mqtt_url = "52.130.92.191"
+    remote_mqtt_port = 1883
 
     local_mqtt = LocalMqttClient(local_mqtt_url, int(local_mqtt_port), userId, "local mqtt client ")
     remote_mqtt = RemoteMqttClient(remote_mqtt_url, int(remote_mqtt_port), userId, "remote mqtt client ")

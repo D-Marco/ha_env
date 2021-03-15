@@ -7,7 +7,9 @@ services:
       - mosquitto
       - ha
     volumes:
-      - ../config/config.xml:/usr/local/src/config.xml
+      - ../config.xml:/usr/local/src/config.xml
+    environment:
+      docEnv: $docEnv
 
   ha:
     image: "dockerhub.nlecloud.com/1x_virtual_platform/ha:0.114.4"

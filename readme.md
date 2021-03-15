@@ -4,7 +4,7 @@
 本文件用于构建智能家居所需要使用的镜像
 * 构建m2m镜像
 ```shell script
-docker build --build-arg docEnv=${docEnv} -f Dockerfile_m2m -t dockerhub.nlecloud.com/1x_virtual_platform/m2m:1.0.0 .
+docker build  -f Dockerfile_m2m -t dockerhub.nlecloud.com/1x_virtual_platform/m2m:1.0.0 .
 ```
 * 构建ha镜像
  ha:0.114.4是将homeassistant/home-assistant：0.114.4重新打tag上传到私有仓库的
