@@ -127,7 +127,7 @@ def build_magnetic_sensor_door_config_payload(serial):
     :param serial:
     :return:
     """
-    return build_config_payload(serial, "Xiaomi", "Aqara door & window contact sensor (MCCGQ11LM)", "door", "contact", 0, binary_reverse=True)
+    return build_config_payload(serial, "Xiaomi", "Aqara door & window contact sensor (MCCGQ11LM)", "door", "contact", 0, binary_reverse=False)
 
 
 def build_water_sensor_leak_config_payload(serial):
