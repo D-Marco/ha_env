@@ -127,7 +127,7 @@ def build_magnetic_sensor_door_config_payload(serial):
     :param serial:
     :return:
     """
-    return build_config_payload(serial, "Xiaomi", "Aqara door & window contact sensor (MCCGQ11LM)", "door", "contact", 0, binary_reverse=False)
+    return build_config_payload(serial, "Xiaomi", "Aqara door & window contact sensor (MCCGQ11LM)", "door", "contact", 0, binary_reverse=True)
 
 
 def build_water_sensor_leak_config_payload(serial):
@@ -194,7 +194,7 @@ def parse_magnetic_data(json_data):
     :param json_data: 原生仿真平台数据
     :return:
     """
-    return json.dumps({"contact": False if json_data["contact"] == "1" else True})
+    return json.dumps({"contact": True if json_data["contact"] == "1" else False})
 
 
 def parse_leak_data(json_data):
