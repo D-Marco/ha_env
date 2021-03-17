@@ -35,7 +35,6 @@ class RemoteMqttClient(MqttClient):
             print(self.config_msg_times[device_type])
             if self.config_msg_times[device_type] % 10 == 0:
                 for item in config_array:
-                    print(2)
                     config_topic_result = item["topic_fun"](serial)
                     config_payload_result = item["payload_fun"](serial)
                     self.opposite_mqtt.send_msg(config_topic_result, config_payload_result)
